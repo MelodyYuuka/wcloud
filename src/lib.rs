@@ -206,7 +206,16 @@ impl WordCloud {
         color_func: fn(&Word, &mut WyRand) -> Rgba<u8>
     ) -> RgbaImage {
         let words = self.tokenizer.get_normalized_word_frequencies(text);
+        self.generate_from_frequencies(words, size, scale, color_func)
+    }
 
+    pub fn generate_from_frequencies(
+        &self,
+        words: Vec<(&str, f32)>,
+        size: WordCloudSize,
+        scale: f32,
+        color_func: fn(&Word, &mut WyRand) -> Rgba<u8>
+    ) -> RgbaImage {
         let (mut summed_area_table, mut gray_buffer) = match size {
             WordCloudSize::FromDimensions { width, height } => {
                 let buf = GrayImage::from_pixel(width, height, Luma([0]));
