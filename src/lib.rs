@@ -428,7 +428,7 @@ impl WordCloud {
     }
 }
 
-fn random_color_rgba(_word: &Word, rng: &mut WyRand) -> Rgba<u8> {
+pub fn random_color_rgba(_word: &Word, rng: &mut WyRand) -> Rgba<u8> {
     let hue: u8 = rng.generate_range(0..255);
     // TODO: Python uses 0.8 for the saturation but it looks too washed out when used here
     //   Maybe something to do with the linear stuff?
